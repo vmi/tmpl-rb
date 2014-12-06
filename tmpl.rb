@@ -11,11 +11,15 @@
 require 'erb'
 
 class Tmpl
-  def initialize(file)
-    tmpl = IO.read(file)
-    @erb = ERB.new(tmpl, nil, '%-')
+  def initialize(file: nil, text: nil)
+    text = IO.read(file) if text.nil?
+    @erb = ERB.new(text, nil, '%-')
     @erb.filename = file
     @context = Object.new
+    @map = map = {}
+    @context.define_singleton_method(:method_missing) do |method, *args|
+      map[method]
+    end
     class << @context
       include ERB::Util
     end
@@ -27,7 +31,11 @@ class Tmpl
   end
 
   def set(key, value)
-    @context.instance_variable_set('@' + key, value)
+    key = key.to_sym
+    if @context.respond_to? key
+      raise "Can't use the key name: #{key}"
+    end
+    @map[key] = value
     self
   end
 
