@@ -61,7 +61,7 @@ Usage: #{$0} [-o OUTFILE] INFILE KEY1=VALUE1 ...
     ofile = ARGV.shift
   end
   ifile = ARGV.shift
-  tmpl = Tmpl.new(ifile)
+  tmpl = Tmpl.new(file: ifile)
   ARGV.each do |arg|
     key, value = *arg.split(/=/, 2)
     tmpl.set(key, value)
