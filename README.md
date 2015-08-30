@@ -16,7 +16,7 @@ Usage2: library
 
         require 'tmpl'
         
-        tmpl = Tmpl.new("infile.erb")
+        tmpl = Tmpl.new(file: "infile.erb")
         tmpl.set("key1", "value1")
         tmpl.set("key2", "value2")
         print tmpl.result
