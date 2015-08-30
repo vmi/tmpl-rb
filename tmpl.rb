@@ -1,6 +1,6 @@
 #!/usr/bin/ruby
 
-# Copyright 2014  Motonori IWAMURO
+# Copyright 2014, 2015  Motonori IWAMURO
 #
 # Usage of the works is permitted provided that this instrument is
 # retained with the works, so that any entity that uses the works
@@ -11,6 +11,9 @@
 require 'erb'
 
 class Tmpl
+
+  attr_reader :context
+
   def initialize(file: nil, text: nil)
     text = IO.read(file) if text.nil?
     @erb = ERB.new(text, nil, '%-')
