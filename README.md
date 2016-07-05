@@ -23,8 +23,8 @@ Usage2: library
 
 * template file
 
-        key1 = <%= @key1 %>
-        key2 = <%= @key2 %>
+        key1 = <%= key1 %>
+        key2 = <%= key2 %>
 
 License
 -------
